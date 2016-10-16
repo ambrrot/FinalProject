@@ -7,7 +7,7 @@ import {
     Form,FormGroup,ControlLabel,
     FormControl,HelpBlock,
     Checkbox,Radio,Grid,Row,Col,
-    Table
+    Table,Panel
 } from 'react-bootstrap';
 
 
@@ -17,9 +17,11 @@ class App extends Component {
 
     state = {
         name: "",
-        color: "",
-        movies: [],
-        gender: "",
+        lname: "",
+        posi: "",
+        plays: [],
+        trophy: "",
+        comment: "",
         records:[]
     };
 
@@ -113,17 +115,20 @@ class App extends Component {
                      <td><Button bsSize="xsmall" bsStyle="warning" onClick={this.deleteItem(item.id)}>Delete</Button></td>
                      <td>{item.id}</td>
                      <td>{item.name}</td>
-                     <td>{item.color}</td>
+                     <td>{item.lname}</td>
+                     <td>{item.posi}</td>
                      <td>{
-                         item.movies.map((movie, mi)=> {
+                         item.plays.map((play, mi)=> {
                              return <div key={mi}>
-                                   <span className="label label-info">{movie}</span>
+                                   <span className="label label-info">{play}</span>
                                  </div>
                          })
 
                       }
                      </td>
-                     <td>{item.gender}</td>
+                     
+                     <td>{item.trophy}</td>
+                     <td>{item.comment}</td>
                 </tr>
             );
         });
@@ -132,90 +137,138 @@ class App extends Component {
         return (
             <div className="container">
                 <div className="page-header">
-                    <h2>Student Survey!!!</h2>
+                    <h2>Basket Ball School Try Out</h2>
                 </div>
-                <div className="jumbotron">
+               
                     <Grid>
-                        <Row>
-                            <Col md={6}>
-                                <Form>
+                        
+                                <Form><div>
+                                 <div className="jumbotron">
                                     <FormGroup>
-                                        <ControlLabel>Name please ...</ControlLabel>
+                                        <ControlLabel>First Name</ControlLabel>
                                         <FormControl
                                             type="text"
-                                            placeholder="Name here..."
+                                            placeholder="Youre First Name Here..."
                                             value={this.state.name}
                                             onChange={this.onChange('name')}
                                             />
-                                        <HelpBlock>use to identify you</HelpBlock>
+                                        <HelpBlock>This is your First Name</HelpBlock>
                                     </FormGroup>
+                                       </div>     
+                                    <div className="jumbotron"> 
+
                                     <FormGroup>
-                                        <ControlLabel>Choose Favorite Color</ControlLabel>
+                                        <ControlLabel>Last Name</ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            placeholder="Youre Last Name Here..."
+                                            value={this.state.lname}
+                                            onChange={this.onChange('lname')}
+                                            />
+                                        <HelpBlock>This is your Last Name</HelpBlock>
+                                    </FormGroup>
+                                 </div>
+ <div className="jumbotron">
+                                 
+                                    <FormGroup>
+                                        <ControlLabel>Position</ControlLabel>
                                         <FormControl componentClass="select"
-                                                     placeholder="Color here..."
-                                                     value={this.state.color}
-                                                     onChange={this.onChange('color')}
+                                                     placeholder="Put your position here..."
+                                                     value={this.state.posi}
+                                                     onChange={this.onChange('posi')}
                                             >
-                                            <option value="red">Red</option>
-                                            <option value="green">Green</option>
-                                            <option value="blue">Blue</option>
+                                            <option value="POINT GUARD">POINT GUARD</option>
+                                            <option value="CENTER">CENTER</option>
+                                            <option value="FORWARD">FORWARD</option>
+                                            <option value="POWER FORWARD">POWER FORWARD</option>
+                                            <option value="SHOOTING GUARD">SHOOTING GUARD</option>
                                         </FormControl>
-                                        <HelpBlock>use to identify you</HelpBlock>
+                                        <HelpBlock>Your applied position</HelpBlock>
                                     </FormGroup>
+                            </div>    
+                             
+                                   <div className="jumbotron">
+                                    <FormGroup >
+                                        <ControlLabel>Favorite Play</ControlLabel>
+                                        <Checkbox value="ISOLATION"
+                                                  checked={this.state.plays.indexOf('ISOLATION')>=0 ? true:false}
+                                                  onChange={this.checkboxChange('plays')}>
+                                           ISOLATION
+                                        </Checkbox>
+                                        <Checkbox value="MAN to MAN"
+                                                  checked={this.state.plays.indexOf('MAN to MAN')>=0 ? true:false}
+                                                  onChange={this.checkboxChange('plays')}>
+                                            MAN to MAN
+                                        </Checkbox>
+                                        <Checkbox value="PICK and ROLL"
+                                                  checked={this.state.plays.indexOf('PICK and ROLL')>=0 ? true:false}
+                                                  onChange={this.checkboxChange('plays')}>
+                                            PICK and ROLL
+                                        </Checkbox>
+                                    </FormGroup>
+                            </div>
+ <div className="jumbotron">
+                                    
                                     <FormGroup>
-                                        <ControlLabel>Favorite Movies </ControlLabel>
-                                        <Checkbox value="harry potter"
-                                                  checked={this.state.movies.indexOf('harry potter')>=0 ? true:false}
-                                                  onChange={this.checkboxChange('movies')}>
-                                            Harry Potter
-                                        </Checkbox>
-                                        <Checkbox value="lotr"
-                                                  checked={this.state.movies.indexOf('lotr')>=0 ? true:false}
-                                                  onChange={this.checkboxChange('movies')}>
-                                            Lord of the Rings
-                                        </Checkbox>
-                                        <Checkbox value="twilight"
-                                                  checked={this.state.movies.indexOf('twilight')>=0 ? true:false}
-                                                  onChange={this.checkboxChange('movies')}>
-                                            Twilight
-                                        </Checkbox>
+                                        <ControlLabel>Number of Trophy you get</ControlLabel>
+                                        <Radio name="trophy" value="1"
+                                               onChange={this.onChange('trophy')}>1</Radio>
+                                        <Radio name="trophy" value="2"
+                                               onChange={this.onChange('trophy')}>2</Radio>
+                                        <Radio name="trophy" value="3"
+                                               onChange={this.onChange('trophy')}>3</Radio>
+                                        <Radio name="trophy" value="4"
+                                               onChange={this.onChange('trophy')}>4</Radio>
+                                         <Radio name="trophy" value="5"
+                                               onChange={this.onChange('trophy')}>5</Radio>             
                                     </FormGroup>
+                           </div>
+                                  <div className="jumbotron">  
+                                
                                     <FormGroup>
-                                        <ControlLabel>Gender </ControlLabel>
-                                        <Radio name="gender" value="male"
-                                               onChange={this.onChange('gender')}>Male</Radio>
-                                        <Radio name="gender" value="female"
-                                               onChange={this.onChange('gender')}>Female</Radio>
+                                        <ControlLabel>Comments</ControlLabel><br/>
+                                        <textarea
+                                            type="textarea"
+                                            placeholder="Feel free to express . . ."
+                                            value={this.state.comment}
+                                            onChange={this.onChange('comment')}
+                                            cols="70"
+                                            rows="7"      
+                                            />
                                     </FormGroup>
+                                    </div>
+                                    </div>
                                     <ButtonGroup>
 
-                                        <Button bsStyle="primary" onClick={this.saveSurvey}>Save Survey</Button>
+                                        <Button bsStyle="primary" onClick={this.saveSurvey}>SEND</Button>
 
                                     </ButtonGroup>
                                 </Form>
-                            </Col>
-                            <Col md={6}>
+                           <br/><br/>
+<div className="jumbotron1">
                                 <Table condensed striped bordered hover>
                                     <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Favorite Color</th>
-                                        <th>Fav. Movie</th>
-                                        <th>Gender</th>
+                                        <th>Last Name</th>
+                                        <th>Position</th>
+                                        <th>Fav. Play</th>
+                                        <th>Trophy</th>
+                                        <th>Comment</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {rows}
                                     </tbody>
                                 </Table>
-                            </Col>
-                        </Row>
+                                
+                            </div>
                     </Grid>
 
                 </div>
-            </div>
+      
         );
     }
 }

@@ -1,22 +1,3 @@
 {
-  "surveys": [
-    {
-      "name": "Diccion",
-      "color": "blue",
-      "movies": [
-        "harry potter"
-      ],
-      "gender": "male",
-      "id": 1
-    },
-    {
-      "name": "Diccion",
-      "color": "blue",
-      "movies": [
-        "harry potter"
-      ],
-      "gender": "male",
-      "id": 4
-    }
-  ]
+  "surveys": []
 }
